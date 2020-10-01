@@ -14,15 +14,18 @@ The login endpoint ( `POST /login` ) should return a signed JWT token on correct
 
 The token should be signed with https://github.com/auth0/node-jsonwebtoken and the signing secret should be provided via config.
 
-The POST request's body will contain `{ username: string, password: string }`.
+For config handling we recommend our guide: https://codingsans.com/blog/node-config-best-practices
 
-The correct username/password combination should be provided via config, because the application should be database-less.
+The POST request's body should contain `{ username: string, password: string }`.
 
-For config handling I would recommend our guide: https://codingsans.com/blog/node-config-best-practices
+The following interface describes the user.
 
-The breweries endpoint ( `GET /breweries` ) should be guarded by a JWT middleware.
-- https://github.com/koajs/jwt
-- https://github.com/auth0/express-jwt
+``` { id: string; username: string; password: string; } ```
+
+The users (with the given interface) should be stored inside a database. You can choose any db you like in your solution but the credentials should be provided via config.
+
+The breweries endpoint ( `GET /breweries` ) should be guarded by a custom middleware.
+The middleware should validate the token and check if the user exists in the database.
 
 The datasource should be the OpenBreweryDB https://www.openbrewerydb.org/
 
@@ -32,7 +35,7 @@ To fetch the data use either:
 - https://github.com/axios/axios
 - https://github.com/bitinn/node-fetch
 
-The search param will be provided in the query params ( `GET /breweries?query=dog` )
+The search param should be provided in the query params ( `GET /breweries?query=dog` )
 
 If the user is not authenticated on `GET /breweries` return `401`.
 
