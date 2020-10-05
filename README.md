@@ -5,6 +5,7 @@ The main goal is to create a web application which can authenticate via JWT (Jso
 For the web serving part you could use either 
 - [Koa](https://koajs.com/)
 - [Express](https://expressjs.com/)
+- [Fastify](https://www.fastify.io/)
 
 Please include a middleware for logging on all requests
 - https://github.com/koajs/logger
