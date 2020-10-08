@@ -56,11 +56,4 @@ class Connection {
   }
 }
 
-/* const connectToDB = async () => {
-  if (process.env.NODE_ENV === 'test') return;
-  const conn = await mongoose.connect(process.env.MONGO_CONNECTION_STRING as string, );
-
-  console.log(`MongoDB Connected: ${conn.connection.host}`);
-}; */
-
 export default new Connection();

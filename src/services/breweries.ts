@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-interface IBrewery {
+interface Brewery {
   id: number;
   name: string;
   brewery_type: string;
@@ -16,20 +16,20 @@ interface IBrewery {
   updated_at: string;
 }
 
-type APIResponse = Array<IBrewery> | [];
+type APIResponse = Array<Brewery> | [];
 
-export type IBreweryList = APIResponse;
+export type BreweryList = APIResponse;
 
-export const getBreweryList = async (query?: string): Promise<IBreweryList> => {
+export const getBreweryList = async (query?: string): Promise<BreweryList> => {
   const BASE_URL_WITH_QUERY = 'https://api.openbrewerydb.org/breweries/search?';
   const BASE_URL_WITHOUT_QUERY = 'https://api.openbrewerydb.org/breweries';
   if (query) {
     const resp = await axios.get(BASE_URL_WITH_QUERY, {
       params: { query },
     });
-    return resp.data as IBreweryList;
+    return resp.data as BreweryList;
   } else {
     const resp = await axios.get(BASE_URL_WITHOUT_QUERY);
-    return resp.data as IBreweryList;
+    return resp.data as BreweryList;
   }
 };

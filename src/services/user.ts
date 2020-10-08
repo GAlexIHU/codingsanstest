@@ -1,7 +1,7 @@
 import User from '../models/User';
 import CustomError from '../utils/customError';
 
-interface IUserData {
+interface UserData {
   username: string;
   password: string;
 }
@@ -11,7 +11,7 @@ interface CreateUserResponse {
   token: string;
 }
 
-export const createUser = async (userData: IUserData): Promise<CreateUserResponse> => {
+export const createUser = async (userData: UserData): Promise<CreateUserResponse> => {
   try {
     const user = new User(userData);
     await user.save();
@@ -35,7 +35,7 @@ interface AuthenticateResponse {
   token?: string;
 }
 
-export const authenticate = async (userData: IUserData): Promise<AuthenticateResponse> => {
+export const authenticate = async (userData: UserData): Promise<AuthenticateResponse> => {
   try {
     const user = await User.findOne({ username: userData.username });
     if (!user) return { exists: false };
